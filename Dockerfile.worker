@@ -1,0 +1,38 @@
+FROM python:3.9.18
+
+# =====================================================================
+# install cmake
+RUN apt-get -qq update \
+&& apt-get -qq install -y cmake \
+&& apt-get clean
+
+# =====================================================================
+# pip upgrade
+RUN pip install --upgrade pip
+
+# =====================================================================
+# Install poetry, package
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
+
+COPY ./src/worker/poetry /workspace/worker/poetry
+WORKDIR /workspace/worker/poetry
+RUN poetry export -f requirements.txt > tempfile.txt && mv tempfile.txt requirements.txt && pip install --no-cache-dir -r requirements.txt
+
+WORKDIR /workspace
+
+# =====================================================================
+# Install Java(jdk 17)
+# RUN wget --progress=dot:giga https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz \ 
+#     && tar xvf openjdk-17.0.2_linux-x64_bin.tar.gz && mv jdk-17.0.2/ /opt/jdk-17/
+
+# ENV JAVA_HOME /opt/jdk-17/
+# ENV PATH $JAVA_HOME/bin:$PATH
+# RUN export JAVA_HOME && export PATH
+
+WORKDIR /
+
+COPY /src/worker /workspace/worker
+
+WORKDIR /workspace
