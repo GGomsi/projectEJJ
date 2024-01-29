@@ -7,8 +7,8 @@ from create_image import generate_image
 from const import PATH_SCRIPT
 
 
-if len(sys.argv)>2:
-    input_prompt = ' '.join(sys.argv[1:])
+if len(sys.argv) > 2:
+    input_prompt = " ".join(sys.argv[1:])
 else:
     input_prompt = sys.argv[1]
 

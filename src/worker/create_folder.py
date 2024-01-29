@@ -3,6 +3,7 @@ from datetime import datetime
 from pytz import timezone
 from const import PATH_SCRIPT
 
+
 def create_folder_with_today() -> str:
     today = str(datetime.now(timezone("Asia/Seoul")))
 
@@ -13,9 +14,5 @@ def create_folder_with_today() -> str:
         print(f"폴더 {folder_path}가 생성 되었습니다.")
     else:
         print(f"{folder_path}가 이미 존재합니다.")
-    
-    return folder_path
 
-if __name__ == "__main__":
-    hi = create_folder_with_today()
-    print(hi)
+    return folder_path

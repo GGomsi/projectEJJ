@@ -20,7 +20,8 @@ response_format ('url' or 'b64_json'): The format in which the generated images 
 user (str): A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse. Learn more.
 """
 
-def generate_image(prompt:str):
+
+def generate_image(prompt: str):
 
     client = OpenAI(api_key="")
 
