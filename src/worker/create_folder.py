@@ -1,13 +1,12 @@
 import os
 from datetime import datetime
 from pytz import timezone
-from const import PATH_SCRIPT
-
+from const import PATH_NEWS_FOLDER
 
 def create_folder_with_today() -> str:
     today = str(datetime.now(timezone("Asia/Seoul")))
 
-    folder_path = os.path.join(PATH_SCRIPT, today.split(" ")[0])
+    folder_path = os.path.join(PATH_NEWS_FOLDER, today.split(" ")[0])
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)

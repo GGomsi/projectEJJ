@@ -1,5 +1,7 @@
 PATH_SCRIPT = "./script"
 PATH_SCRIPT_FORMAT = "./script/script_format.json"
+PATH_NEWS_FOLDER = "./news"
+
 EXAMPLE = """
 [example]:
 장면 1
